@@ -8,6 +8,7 @@ import com.example.RollCall.entity.Status;
 import com.example.RollCall.mapper.RequestMapper;
 import com.example.RollCall.repository.RequestRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -38,6 +39,14 @@ public class RequestService {
             requestRepository.deleteById(id);
             return "Xóa thành công";
         }else throw new RuntimeException("Không tồn tại đơn có id "+id);
+    }
+    @PreAuthorize("hasRole('ADMIN')")
+    public void respondToLaveRequest(Long leaveRequestId ,Status status,String adminCmt){
+        Request request = requestRepository.findById(leaveRequestId).orElseThrow(()-> new RuntimeException("Leave request not found"));
+        request.setUpdateAt(new Date());
+        request.setStatus(status);
+        request.setComment(adminCmt);
+        requestRepository.save(request);
     }
 
 }

@@ -20,4 +20,5 @@ public class ResponsiData<T> {
     public ResponsiData(String message) {
         this.message = message;
     }
+
 }

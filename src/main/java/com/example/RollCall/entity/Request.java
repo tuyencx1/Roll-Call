@@ -31,6 +31,9 @@ public class Request {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date requestDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateAt;
     private String reason;
     private Status status;
     private String comment;

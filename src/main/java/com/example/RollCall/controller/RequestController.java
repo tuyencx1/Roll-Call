@@ -2,6 +2,7 @@ package com.example.RollCall.controller;
 
 import com.example.RollCall.dto.repon.ResponsiData;
 import com.example.RollCall.dto.request.RequestsRequest;
+import com.example.RollCall.entity.Status;
 import com.example.RollCall.service.RequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,18 @@ public class RequestController {
         } catch (RuntimeException e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+    @PostMapping("/respond")
+    public ResponseEntity<ResponsiData<?>> respond(@RequestParam Long leaveRequestId,
+                                                   @RequestParam Status status,
+                                                   @RequestParam(required = false) String adminComment){
+        try {
+            requestService.respondToLaveRequest(leaveRequestId,status,adminComment);
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponsiData<>("Đã cập nhật trạng thái đơn!")
+            );
+        }catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponsiData<>(e.getMessage()));
+    }
     }
 }
