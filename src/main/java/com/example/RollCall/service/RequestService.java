@@ -48,5 +48,13 @@ public class RequestService {
         request.setComment(adminCmt);
         requestRepository.save(request);
     }
+    @PreAuthorize("hasRole('ADMIN')")
+    public void respondToLsaveRequest(Long leaveRequestId ,Status status,String adminCmt){
+        Request request = requestRepository.findById(leaveRequestId).orElseThrow(()-> new RuntimeException("Leave request not found"));
+        request.setUpdateAt(new Date());
+        request.setStatus(status);
+        request.setComment(adminCmt);
+        requestRepository.save(request);
+    }
 
 }
