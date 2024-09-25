@@ -6,10 +6,7 @@ import com.example.RollCall.service.SalaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/salary")
@@ -28,10 +25,10 @@ public class SalaryController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponsiData<>(e.getMessage()));
         }
     }
-    @PostMapping("")
+    @GetMapping("")
     public ResponseEntity<ResponsiData<?>> findBy(@RequestParam String id,@RequestParam int month,@RequestParam int year){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(
+            return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponsiData<>("200","Payroll by id ",salaryService.findById(id,month,year))
             );
         } catch (RuntimeException e) {

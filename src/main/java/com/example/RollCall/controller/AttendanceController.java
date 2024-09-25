@@ -5,10 +5,7 @@ import com.example.RollCall.service.AttendanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -27,7 +24,7 @@ public class AttendanceController {
     }
 
 
-    @PostMapping("")
+    @GetMapping("")
     public ResponseEntity<ResponsiData<?>> getFindByMonth(@RequestParam int month) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(
@@ -37,7 +34,7 @@ public class AttendanceController {
         }
     }
 
-    @PostMapping("/seach")
+    @GetMapping("/seach")
     public ResponseEntity<ResponsiData<?>> getFindByMonth(@RequestParam String id,@RequestParam int month){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(

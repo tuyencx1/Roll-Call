@@ -21,7 +21,7 @@ public class UserController {
                 new ResponsiData<>("200","Get All User",userService.getAllUsers()));
     }
 
-    @PostMapping("{id}")
+    @GetMapping("{id}")
     public ResponseEntity<ResponsiData<?>> getUserById(@PathVariable String id){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponsiData<>("200","Get User",userService.getUserById(id)));
@@ -29,7 +29,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponsiData<>(e.getMessage()));
         }
     }
-    @PostMapping("")
+    @GetMapping("/search")
     public ResponseEntity<ResponsiData<?>> getsearchUsers(@RequestParam String name){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(

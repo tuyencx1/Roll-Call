@@ -1,14 +1,23 @@
 package com.example.RollCall;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class test {
     public static void main(String[] args) {
-        double totalSalary = 3000000;
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+        System.out.println(formattedDateTime);
+        String chuoi = "0216522521||Cấn Xuân Tuyên|22042000|Nam|04092022";
+        String[] phanTach = chuoi.split("\\|+");
 
-// Sử dụng DecimalFormat với mẫu định dạng
-        DecimalFormat df = new DecimalFormat("#.###");
-        String formattedTotalSalary = df.format(totalSalary);
-
-        System.out.println("Total Salary: " + formattedTotalSalary);
+        // In ra các phần tử đã tách
+        for (String phanTu : phanTach) {
+            System.out.println(phanTu);
+        }
+        System.out.println("100"+(-5));
     }
 }

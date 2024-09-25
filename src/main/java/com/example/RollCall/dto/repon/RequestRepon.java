@@ -1,6 +1,7 @@
 package com.example.RollCall.dto.repon;
 
 import com.example.RollCall.entity.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -16,11 +17,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class RequestRepon {
     private String userId;
-    @Temporal(TemporalType.TIMESTAMP)
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private Date startDate;
-    @Temporal(TemporalType.TIMESTAMP)
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private Date endDate;
-    @Temporal(TemporalType.TIMESTAMP)
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private Date requestDate;
     private String reason;
     private Status status;

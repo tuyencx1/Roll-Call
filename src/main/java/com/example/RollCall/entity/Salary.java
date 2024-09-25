@@ -2,6 +2,7 @@ package com.example.RollCall.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -21,9 +22,10 @@ public class Salary {
     private String name;
     private double basicSalary;
     private double salaryCoefficient;//hệ số
-    private double latePenalty; //tiền phạt
+    private String latePenalty; //tiền phạt
     private int totalWorkingDay;//số ngày đi làm
     private int unpaidLeaveDay;//số ngày nghỉ
     private String totalSalary;
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date creatAt;
 }

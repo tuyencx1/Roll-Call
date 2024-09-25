@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class RequestController {
     private final RequestService requestService;
 
-    @PostMapping("")
+    @GetMapping("")
     public ResponseEntity<ResponsiData<?>> getFindByName(@RequestParam String name){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponsiData<>("200","Get find by username",requestService.getFindBy(name))
+                    new ResponsiData<>("200","Get find by name :"+name,requestService.getFindBy(name))
             );
         }catch (RuntimeException e){
             throw new RuntimeException("Error !");
