@@ -8,10 +8,7 @@ import com.example.RollCall.dto.request.IntrospectRequest;
 import com.example.RollCall.service.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
@@ -27,7 +24,7 @@ public class AuthenticationController {
         return ResponsiData.<AuthenRepon>builder().data(result).build();
     }
 
-    @PostMapping("/ktr")
+    @GetMapping("/ktr")
     public ResponsiData<IntrospectResponse> introspecate(@RequestBody IntrospectRequest respuest)
             throws ParseException, JOSEException {
         var result = athenticationService.introspect(respuest);
