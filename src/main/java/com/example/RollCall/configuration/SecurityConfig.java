@@ -27,7 +27,7 @@ public class SecurityConfig {
 
     private final String signerKey = "AGdWvMpOfzsylwNfdKV5Gs61ayb0Zpm+ulWBIIqhFt7Fat4c8VnACHYjii9Db6OE";
 
-    private final String[] PUBLIC_ENDPOINTS = { "/auth/log-in" ,"/auth/ktr","/user/add" ,"/api/attendance/checkin" ,"/api/attendance"};
+    private final String[] PUBLIC_ENDPOINTS = { "/swagger-ui/**","/api-docs/**", "/swagger-ui.html","/auth/log-in" ,"/auth/ktr","/user/add" ,"/api/attendance/checkin" ,"/api/attendance"};
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
@@ -35,7 +35,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(request -> request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS)
+        http.authorizeHttpRequests(request -> request.requestMatchers(PUBLIC_ENDPOINTS)
                 .permitAll()
                 .anyRequest()
                 .authenticated());

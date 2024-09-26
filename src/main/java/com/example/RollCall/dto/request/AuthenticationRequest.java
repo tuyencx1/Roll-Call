@@ -1,5 +1,6 @@
 package com.example.RollCall.dto.request;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -8,7 +9,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AuthenRespuest {
+public class AuthenticationRequest {
+    @NotNull(message = "UserName không thể rỗng.")
     String username;
+
+    @NotNull(message = "Password không thể rỗng.")
     String password;
 }

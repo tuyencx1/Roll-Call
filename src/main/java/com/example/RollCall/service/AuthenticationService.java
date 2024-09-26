@@ -2,7 +2,7 @@ package com.example.RollCall.service;
 
 import com.example.RollCall.dto.repon.AuthenRepon;
 import com.example.RollCall.dto.repon.IntrospectResponse;
-import com.example.RollCall.dto.request.AuthenRespuest;
+import com.example.RollCall.dto.request.AuthenticationRequest;
 import com.example.RollCall.dto.request.IntrospectRequest;
 import com.example.RollCall.entity.Users;
 import com.example.RollCall.repository.UserRepository;
@@ -46,7 +46,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenRepon authenticated(AuthenRespuest respuest){
+    public AuthenRepon authenticated(AuthenticationRequest respuest){
         var user = userReponsitory.findByUserName(respuest.getUsername()).orElseThrow(()-> new RuntimeException("User not found"));
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         boolean authenticated = passwordEncoder.matches(respuest.getPassword(), user.getPassword());

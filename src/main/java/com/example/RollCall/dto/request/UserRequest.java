@@ -2,7 +2,9 @@ package com.example.RollCall.dto.request;
 
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,8 +30,16 @@ public class UserRequest {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birthday;
-    private int phone;
-    private int idCard;
-    private float salaryRank;
+
+    @Pattern(regexp = "^(\\+84\\d{9}|0\\d{9})$",
+            message = "Số điện thoại phải có 10 số (bắt đầu với 0) hoặc 12 số (bắt đầu với +84).")
+    private String phone;
+
+    @Size(min = 12, max = 12, message = "ID Card chỉ có 12 ký tự")
+    private String idCard;
+
+    @NotNull(message = "Salary rank không được trống.")
+    @Positive(message = "Salary rank phải lớn hơn 0.")
+    private Float salaryRank;
     private List<String> roles;
 }

@@ -34,11 +34,11 @@ public class AttendanceController {
         }
     }
 
-    @GetMapping("/seach")
+    @GetMapping("/search")
     public ResponseEntity<ResponsiData<?>> getFindByMonth(@RequestParam String id,@RequestParam int month){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponsiData<>("Success","Bạn đã chấm công : "+ attendanceService.totalAttendance(id,month)+" buổi trong tháng "+month,attendanceService.getFindBy(id,month)));
+                    new ResponsiData<>("200","Bạn đã chấm công : "+ attendanceService.totalAttendance(id,month)+" buổi trong tháng "+month,attendanceService.getFindBy(id,month)));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponsiData<>(e.getMessage()));
         }

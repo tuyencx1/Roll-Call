@@ -20,16 +20,16 @@ public class ApplicationConfig {
     private final PasswordEncoder passwordEncoder;
 
     @Bean
-    public ApplicationRunner applicationRunner(UserRepository userReponsitory, RoleRepository roleReponsitory ) {
+    public ApplicationRunner applicationRunner(UserRepository userRepository, RoleRepository roleRepository ) {
        return args -> {
-           if(userReponsitory.findByUserName("admin").isEmpty()){
-               List<Role> roles = roleReponsitory.findByName("ADMIN");
+           if(userRepository.findByUserName("admin").isEmpty()){
+               List<Role> roles = roleRepository.findByName("ADMIN");
                Users users = Users.builder()
                        .userName("admin")
                        .password(passwordEncoder.encode("admin"))
                        .roles(roles)
                        .build();
-               userReponsitory.save(users);
+               userRepository.save(users);
                log.warn("User admin has been created with account and password: admin");
            }
        };

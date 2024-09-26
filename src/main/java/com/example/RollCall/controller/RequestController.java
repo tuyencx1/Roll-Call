@@ -27,7 +27,7 @@ public class RequestController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ResponsiData<?>> add(@RequestBody RequestsRequest request){
+    public ResponseEntity<ResponsiData<?>> addLetter(@RequestBody RequestsRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(
                     new ResponsiData<>("200","Creat success",requestService.getCreat(request))

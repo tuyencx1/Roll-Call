@@ -16,7 +16,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("")
-    public ResponseEntity<ResponsiData<?>> getall(){
+    public ResponseEntity<ResponsiData<?>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponsiData<>("200","Get All User",userService.getAllUsers()));
     }
@@ -30,7 +30,7 @@ public class UserController {
         }
     }
     @GetMapping("/search")
-    public ResponseEntity<ResponsiData<?>> getsearchUsers(@RequestParam String name){
+    public ResponseEntity<ResponsiData<?>> getSearchUsers(@RequestParam String name){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponsiData<>("200","Search User By Name ",userService.searchUsers(name))
@@ -44,7 +44,7 @@ public class UserController {
     public ResponseEntity<ResponsiData<?>> addUser(@RequestBody @Valid UserRequest user){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(
-                    new ResponsiData<>("201","Creat User Susecc",userService.getCreatUser(user))
+                    new ResponsiData<>("201","Creat User Success",userService.getCreatUser(user))
             );
         }catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponsiData<>(e.getMessage()));
